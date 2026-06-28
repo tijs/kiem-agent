@@ -57,6 +57,10 @@ Idempotent: re-running just (re)binds this directory.
 
 - The interface is the CLI; everything you write syncs to the user's other devices
   within moments — treat notes as user-visible.
-- This skill is the Claude flavor of an agent-agnostic contract: any tool that can
-  run `kiem` can participate. The durable spec lives in the kiem-app repo at
+- **Under Pi:** if the Kiem extension is installed, prefer its native tools
+  (`kiem_todos`, `kiem_notes`, `kiem_show`, `kiem_note_add`, `kiem_todo_set`,
+  `kiem_project_current`) — they are the same operations as first-class tool calls.
+  The shell commands above are the equivalent for any other agent.
+- This skill is an agent-agnostic contract: any tool that can run `kiem` can
+  participate. The durable spec lives in the kiem-app repo at
   `docs/specs/kiem-project-marker.md`.
