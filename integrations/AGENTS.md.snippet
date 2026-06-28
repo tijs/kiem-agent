@@ -1,0 +1,12 @@
+<!-- kiem -->
+This repo is a Kiem project. Its task list, decisions, and progress live in Kiem
+(a synced notes store), not in this repo's files.
+
+- Read state first: `kiem project current`, then `kiem todos` and `kiem notes`
+  (add `--json` for structured output). Do not reconstruct project state from code.
+- Record progress: `kiem note add "<markdown>"` for a decision/finding/plan, and
+  `kiem todo check <note-id> <index>` to complete a task (re-run `kiem todos` first
+  — indices are positional and the note may have changed on another device).
+
+`kiem project add "<Name>"` onboards a new repo (writes the committed `.kiem`
+marker and this pointer).

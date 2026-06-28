@@ -1,0 +1,14 @@
+{
+  "name": "kiem",
+  "owner": { "name": "Tijs Teulings" },
+  "metadata": {
+    "description": "Agent integrations for Kiem — read and maintain project state through the kiem CLI."
+  },
+  "plugins": [
+    {
+      "name": "kiem-projects",
+      "source": "./",
+      "description": "Work on a project whose notes, todos, and progress live in Kiem, via the kiem CLI."
+    }
+  ]
+}
