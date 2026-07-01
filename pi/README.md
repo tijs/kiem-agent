@@ -39,7 +39,9 @@ Verify with `pi list` (extension) and `/skill:kiem-projects` inside a session.
 | `kiem_notes` | List the project's notes |
 | `kiem_show` | Show one note (metadata + body) |
 | `kiem_note_add` | Add a note (records decisions/progress; `- [ ]` lines become todos) |
+| `kiem_todo_add` | Append one todo to a note in a single call (no whole-body rewrite) |
 | `kiem_todo_set` | Check / uncheck a todo by `(note_id, index)` |
+| `kiem_edit_lines` | Replace a line range (multibyte-safe; `expect_version` guards concurrent edits) |
 | `kiem_project_add` | Onboard the cwd as a project (writes `.kiem`) |
 
 All shell out to `kiem --json` via `execFile` (no shell), returning structured

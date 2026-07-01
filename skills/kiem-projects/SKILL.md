@@ -44,6 +44,10 @@ That is your ground truth for "what is this project and what's left."
 - Add a single task to an existing note: `kiem todo add <note-id> "<text>"`. It
   appends one `- [ ]` item in one step — **do not** read the note and rewrite its
   whole body to add a todo (that is slow and corrupts formatting).
+- Change an existing line (edit wording, restructure): `kiem edit-lines <note-id>
+  <start> <end> --text "<new lines>"`. `kiem show <note-id>` prints 1-based line
+  numbers and a `version`; pass `--expect <version>` so the edit is rejected if
+  the note changed since you read it. Prefer this over rewriting the whole body.
 - Record a decision, finding, or new plan: `kiem note add "<markdown text>"`. The
   note is tagged into the current project automatically. The first line is the
   title; include `- [ ]` lines to add new todos.
@@ -62,8 +66,8 @@ Idempotent: re-running just (re)binds this directory.
   within moments — treat notes as user-visible.
 - **Under Pi:** if the Kiem extension is installed, prefer its native tools
   (`kiem_todos`, `kiem_notes`, `kiem_show`, `kiem_note_add`, `kiem_todo_add`,
-  `kiem_todo_set`, `kiem_project_current`) — they are the same operations as
-  first-class tool calls.
+  `kiem_todo_set`, `kiem_edit_lines`, `kiem_project_current`) — they are the same
+  operations as first-class tool calls.
   The shell commands above are the equivalent for any other agent.
 - This skill is an agent-agnostic contract: any tool that can run `kiem` can
   participate. The durable spec lives in the kiem-app repo at

@@ -15,6 +15,7 @@
  */
 
 const EXPECTED = [
+	"kiem_edit_lines",
 	"kiem_note_add",
 	"kiem_notes",
 	"kiem_project_add",

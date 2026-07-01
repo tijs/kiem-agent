@@ -136,6 +136,31 @@ export default function kiemExtension(pi: ExtensionAPI) {
 	});
 
 	pi.registerTool({
+		name: "kiem_edit_lines",
+		label: "Kiem: edit lines",
+		description:
+			"Replace a 1-based inclusive line range of a note's body with new text (targeted, multibyte-safe). Read the note with kiem_show first to get line numbers and its `version`, pass that version as expect_version, and the edit is rejected if the note changed since — so you never clobber a concurrent change. Prefer this over rewriting the whole body. Empty replacement deletes the range.",
+		promptSnippet: "Make a targeted line edit to a Kiem note instead of rewriting its whole body.",
+		promptGuidelines: [
+			"Call kiem_show immediately before this to get current line numbers and the version token.",
+		],
+		parameters: Type.Object({
+			note_id: Type.String({ description: "Note to edit (from kiem_show / kiem_notes)" }),
+			start: Type.Integer({ description: "First line to replace (1-based, inclusive)" }),
+			end: Type.Integer({ description: "Last line to replace (1-based, inclusive; = start for one line)" }),
+			text: Type.String({ description: "Replacement text; may be multi-line; empty deletes the range" }),
+			expect_version: Type.Optional(
+				Type.String({ description: "The `version` from kiem_show; rejects the edit if the note changed since" }),
+			),
+		}),
+		async execute(_id, params) {
+			const args = ["edit-lines", params.note_id, String(params.start), String(params.end), "--text", params.text];
+			if (params.expect_version) args.push("--expect", params.expect_version);
+			return toResult(await runKiem(args));
+		},
+	});
+
+	pi.registerTool({
 		name: "kiem_todo_set",
 		label: "Kiem: check/uncheck todo",
 		description:
