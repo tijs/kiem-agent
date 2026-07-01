@@ -41,7 +41,8 @@ pi --skill /path/to/kiem-agent/skills/kiem-projects # workflow + when-to-use
 
 ```
 pi/                    Pi extension (kiem.ts) + skill install guide + smoke test
-skills/kiem-projects/  the skill (Agent Skills standard; also usable standalone)
+skills/                Kiem-native skills (Agent Skills standard; also standalone):
+                       kiem-projects, kiem-plan, kiem-work, …
 .claude-plugin/        Claude Code plugin + marketplace manifests
 integrations/          AGENTS.md pointer for Codex/generic agents
 ```
