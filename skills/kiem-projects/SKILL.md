@@ -51,6 +51,10 @@ That is your ground truth for "what is this project and what's left."
 - Record a decision, finding, or new plan: `kiem note add "<markdown text>"`. The
   note is tagged into the current project automatically. The first line is the
   title; include `- [ ]` lines to add new todos.
+- For longer working docs — plans, brainstorms, reviews, learnings — add
+  `--type <kind>` (`plan`, `brainstorm`, `review`, `solution`, `decision`, `doc`),
+  or the `type` param on `kiem_note_add`, so they group by kind in the app. Read
+  one kind back with `kiem notes --type <kind>`.
 - Keep notes small and purposeful — one decision or task list per note — so the
   human can scan them in the app.
 

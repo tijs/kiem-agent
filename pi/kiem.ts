@@ -51,6 +51,9 @@ function toResult(r: { ok: boolean; text: string }, whenEmpty = "(no output)"): 
 const projectParam = Type.Optional(
 	Type.String({ description: "Override the resolved project (a name or proj/<slug>)" }),
 );
+const typeParam = Type.Optional(
+	Type.String({ description: "Note kind: plan, brainstorm, review, solution, decision, doc (default: note)" }),
+);
 
 export default function kiemExtension(pi: ExtensionAPI) {
 	pi.registerTool({
@@ -82,11 +85,15 @@ export default function kiemExtension(pi: ExtensionAPI) {
 		name: "kiem_notes",
 		label: "Kiem: project notes",
 		description:
-			"List the current Kiem project's notes as JSON (decisions, context, plans, learnings). Use kiem_show to read a note's full body.",
+			"List the current Kiem project's notes as JSON (decisions, context, plans, learnings). Pass `type` to list only one kind (e.g. plan). Use kiem_show to read a note's full body.",
 		promptSnippet: "Read the project's notes from Kiem as ground truth for context and prior decisions.",
-		parameters: Type.Object({ project: projectParam }),
+		parameters: Type.Object({ project: projectParam, type: typeParam }),
 		async execute(_id, params) {
-			const args = ["notes", ...(params.project ? ["--project", params.project] : [])];
+			const args = [
+				"notes",
+				...(params.project ? ["--project", params.project] : []),
+				...(params.type ? ["--type", params.type] : []),
+			];
 			return toResult(await runKiem(args), "[]");
 		},
 	});
@@ -107,15 +114,22 @@ export default function kiemExtension(pi: ExtensionAPI) {
 		name: "kiem_note_add",
 		label: "Kiem: add note",
 		description:
-			"Add a note to the current Kiem project (auto-tagged proj/<slug>). The first line becomes the title; include `- [ ]` lines to create todos. Use this to record decisions, findings, and progress so they sync to other agents and devices.",
+			"Add a note to the current Kiem project (auto-tagged proj/<slug>). The first line becomes the title; include `- [ ]` lines to create todos. Pass `type` to mark it a plan/brainstorm/review/etc so it groups by kind. Use this to record decisions, findings, and progress so they sync to other agents and devices.",
 		promptSnippet: "Record decisions, findings, and new task lists back into Kiem.",
 		promptGuidelines: ["Keep each note small and purposeful — one decision or task list per note."],
 		parameters: Type.Object({
 			text: Type.String({ description: "Markdown note text; the first line is the title" }),
 			project: projectParam,
+			type: typeParam,
 		}),
 		async execute(_id, params) {
-			const args = ["note", "add", ...(params.project ? ["--project", params.project] : []), params.text];
+			const args = [
+				"note",
+				"add",
+				...(params.project ? ["--project", params.project] : []),
+				...(params.type ? ["--type", params.type] : []),
+				params.text,
+			];
 			return toResult(await runKiem(args));
 		},
 	});
