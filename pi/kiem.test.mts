@@ -20,6 +20,7 @@ const EXPECTED = [
 	"kiem_project_add",
 	"kiem_project_current",
 	"kiem_show",
+	"kiem_todo_add",
 	"kiem_todo_set",
 	"kiem_todos",
 ].sort();

@@ -30,10 +30,12 @@ async function runKiem(args: string[]): Promise<{ ok: boolean; text: string }> {
 		});
 		return { ok: true, text: stdout.trim() };
 	} catch (e) {
-		const err = e as { stderr?: string; message?: string; code?: string };
+		const err = e as { stderr?: string; message?: string; syscall?: string };
 		const stderr = (err.stderr || "").toString().trim();
-		const reason = err.code === "ENOENT"
-			? `\`${KIEM}\` not found on PATH. Install it from the Kiem app (Install Command Line Tool) or set KIEM_BIN.`
+		// A spawn-level failure (ENOENT/EACCES/ENOTDIR...) means the binary can't be
+		// run at all — tell the agent to install it rather than reconstruct state.
+		const reason = err.syscall?.startsWith("spawn")
+			? `\`${KIEM}\` is not runnable (${err.message}). Install the kiem CLI (Kiem app → Install Command Line Tool, or \`cargo install --path crates/kiem-cli\`) or set KIEM_BIN. Do NOT reconstruct project state from code — ask the user to install kiem.`
 			: stderr || err.message || String(e);
 		return { ok: false, text: reason };
 	}
@@ -115,6 +117,21 @@ export default function kiemExtension(pi: ExtensionAPI) {
 		async execute(_id, params) {
 			const args = ["note", "add", ...(params.project ? ["--project", params.project] : []), params.text];
 			return toResult(await runKiem(args));
+		},
+	});
+
+	pi.registerTool({
+		name: "kiem_todo_add",
+		label: "Kiem: add todo",
+		description:
+			"Append a new open todo to an existing note in one step. Use this to add a task — do NOT read the note and rewrite its whole body. The item is placed after the note's last checkbox; pass plain text (no `- [ ]` prefix needed).",
+		promptSnippet: "Add a task to a Kiem note with a single call instead of rewriting the note body.",
+		parameters: Type.Object({
+			note_id: Type.String({ description: "Note to append the todo to (from kiem_todos / kiem_notes)" }),
+			text: Type.String({ description: "The task text, e.g. 'Wire up live sync refresh'" }),
+		}),
+		async execute(_id, params) {
+			return toResult(await runKiem(["todo", "add", params.note_id, params.text]));
 		},
 	});
 

@@ -41,6 +41,9 @@ That is your ground truth for "what is this project and what's left."
   so **re-run `kiem todos` immediately before acting** if the note may have changed
   (another device or the app may have edited it; a stale index can toggle the wrong
   item).
+- Add a single task to an existing note: `kiem todo add <note-id> "<text>"`. It
+  appends one `- [ ]` item in one step — **do not** read the note and rewrite its
+  whole body to add a todo (that is slow and corrupts formatting).
 - Record a decision, finding, or new plan: `kiem note add "<markdown text>"`. The
   note is tagged into the current project automatically. The first line is the
   title; include `- [ ]` lines to add new todos.
@@ -58,8 +61,9 @@ Idempotent: re-running just (re)binds this directory.
 - The interface is the CLI; everything you write syncs to the user's other devices
   within moments — treat notes as user-visible.
 - **Under Pi:** if the Kiem extension is installed, prefer its native tools
-  (`kiem_todos`, `kiem_notes`, `kiem_show`, `kiem_note_add`, `kiem_todo_set`,
-  `kiem_project_current`) — they are the same operations as first-class tool calls.
+  (`kiem_todos`, `kiem_notes`, `kiem_show`, `kiem_note_add`, `kiem_todo_add`,
+  `kiem_todo_set`, `kiem_project_current`) — they are the same operations as
+  first-class tool calls.
   The shell commands above are the equivalent for any other agent.
 - This skill is an agent-agnostic contract: any tool that can run `kiem` can
   participate. The durable spec lives in the kiem-app repo at
