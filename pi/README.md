@@ -15,20 +15,23 @@ the binary with `KIEM_BIN` if it lives elsewhere.
 
 ## Install
 
-```bash
-# Extension (adds it to ~/.pi settings, all projects):
-pi install /path/to/kiem-agent/pi/kiem.ts
-#   ...or project-local (.pi), or one-off for a single session:
-pi install /path/to/kiem-agent/pi/kiem.ts -l
-pi -e /path/to/kiem-agent/pi/kiem.ts
+The whole repo is a Pi package (root `package.json` `pi` manifest), so one command
+installs this extension **and** every skill under `skills/`:
 
-# Skill (Pi follows the Agent Skills standard; point it at the dir):
-pi --skill /path/to/kiem-agent/skills/kiem-projects
-#   ...or copy it where Pi auto-discovers skills:
-cp -r /path/to/kiem-agent/skills/kiem-projects ~/.pi/agent/skills/
+```bash
+pi install git:github.com/tijs/kiem-agent          # all projects (~/.pi settings)
+pi install git:github.com/tijs/kiem-agent -l       # project-local (.pi)
+pi -e git:github.com/tijs/kiem-agent               # one session only, no install
 ```
 
-Verify with `pi list` (extension) and `/skill:kiem-projects` inside a session.
+From a local checkout, install the package by directory (not the single file):
+
+```bash
+pi install /path/to/kiem-agent                     # extension + all skills
+pi -e /path/to/kiem-agent/pi/kiem.ts               # just this extension, one session
+```
+
+Verify with `pi list` (packages) and `/skill:kiem-plan` (etc.) inside a session.
 
 ## Tools the extension registers
 

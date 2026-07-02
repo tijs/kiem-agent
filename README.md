@@ -42,14 +42,25 @@ sub-agents, and storing every artifact in Kiem as a typed note:
 ## Pi — the reference integration
 
 [Pi](https://pi.dev) gets the deepest integration: a native **extension** that
-exposes the CLI as first-class tools, plus the **skill** that says when to use
-them. This is where the CLI + skill are tuned to work as one unit; other agents
+exposes the CLI as first-class tools, plus the **skills** that say when to use
+them. This is where the CLI + skills are tuned to work as one unit; other agents
 are duplicated from here. See **[`pi/README.md`](pi/README.md)**.
 
+This repo is a **Pi package** (see `package.json`'s `pi` manifest), so one command
+installs the extension **and** all the skills:
+
 ```bash
-pi install /path/to/kiem-agent/pi/kiem.ts          # native tools
-pi --skill /path/to/kiem-agent/skills/kiem-projects # workflow + when-to-use
+pi install git:github.com/tijs/kiem-agent     # extension + all skills, one line
+#   ...pinned to a tag/commit:
+pi install git:github.com/tijs/kiem-agent@v0.2.0
+#   ...or from a local checkout (dev):
+pi install /path/to/kiem-agent
+#   ...try it for one session without installing:
+pi -e git:github.com/tijs/kiem-agent
 ```
+
+Prerequisite: the `kiem` CLI on `PATH` (Kiem app → *Install Command Line Tool*, or
+`cargo install --path crates/kiem-cli` in the kiem-app repo).
 
 ## Other agents (duplicated from Pi as needed)
 
