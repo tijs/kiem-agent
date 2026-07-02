@@ -1,8 +1,11 @@
 # kiem-agent
 
 Agent integrations for [Kiem](https://github.com/tijs/kiem). They teach a coding
-agent to read and maintain **project state — notes, todos, progress — from Kiem**
-instead of reconstructing it from the repo every session.
+agent to read and maintain **project state — notes, todos, plans, reviews,
+learnings — in Kiem** instead of reconstructing it from the repo every session,
+and give it a lean, token-economical **plan → work → review → compound** workflow
+where every artifact lives in Kiem (typed, tagged to the project, editable across
+machines) rather than in gitignored repo files.
 
 Kiem itself (the app + Rust core + `kiem` CLI) lives in the `kiem-app` repo. This
 repo is optional: Kiem works without it. It exists to make the agent-facing side
@@ -16,6 +19,25 @@ participate: it reads `kiem todos` / `kiem notes` and records progress with
 `.kiem` marker (see `kiem-app/docs/specs/kiem-project-marker.md`).
 
 Each integration is a thin wrapper that points its agent at that CLI.
+
+## The skills
+
+`kiem-projects` is the base contract (read state first, record progress back). The
+rest are a Kiem-native mirror of a compound-engineering workflow — simpler, fewer
+sub-agents, and storing every artifact in Kiem as a typed note:
+
+| Skill | Does | Writes to Kiem |
+|-------|------|----------------|
+| **kiem-projects** | Base: read/maintain project state via the CLI | notes, todos |
+| **kiem-brainstorm** | Explore WHAT to build | `brainstorm` note |
+| **kiem-plan** | Write a lean implementation plan | `plan` note (its `- [ ]` become todos) |
+| **kiem-work** | Execute a plan, record progress | checked todos, `decision` notes |
+| **kiem-review** | Curated lens roster (cap 4), by diff | `review` note + `- [ ]` todos |
+| **kiem-compound** | Capture a solved problem | `solution` note |
+| **kiem-debug** | Root-cause a bug, record the lesson | `solution` note |
+| **kiem-doc-review** | Critique a plan/brainstorm note | edits + todos |
+| **kiem-refresh** | Keep long-term memory tidy | updates/merges notes |
+| **kiem-lfg** | Orchestrate the whole loop | all of the above |
 
 ## Pi — the reference integration
 
@@ -33,7 +55,7 @@ pi --skill /path/to/kiem-agent/skills/kiem-projects # workflow + when-to-use
 
 | Agent | Mechanism | Status |
 |-------|-----------|--------|
-| **Claude Code** | Plugin / skill (this repo is also a marketplace) | scaffolded — `/plugin marketplace add tijs/kiem-agent` → `/plugin install kiem-projects@kiem`, or `npx openskills install skills/kiem-projects` |
+| **Claude Code** | Plugin / skill (this repo is also a marketplace) | scaffolded — `/plugin marketplace add tijs/kiem-agent` → `/plugin install kiem-agent@kiem`, or `npx openskills install skills/<name>` |
 | **Codex** (or any `AGENTS.md` reader) | `AGENTS.md` pointer | `integrations/AGENTS.md.snippet` (written into each repo by `kiem project add`) |
 | **GitHub Copilot** | Repo custom instructions | planned |
 
@@ -49,6 +71,6 @@ integrations/          AGENTS.md pointer for Codex/generic agents
 
 ## Keeping in sync
 
-The skill and extension describe the `kiem` CLI surface, which lives in `kiem-app`.
-When that surface changes, update `pi/kiem.ts` and `skills/kiem-projects/SKILL.md`
+The skills and extension describe the `kiem` CLI surface, which lives in `kiem-app`.
+When that surface changes, update `pi/kiem.ts` and the affected `skills/*/SKILL.md`
 here. The durable contract is `kiem-app/docs/specs/kiem-project-marker.md`.

@@ -1,6 +1,6 @@
 {
-  "name": "kiem-projects",
-  "version": "0.1.0",
-  "description": "Read and maintain Kiem project state (notes, todos, progress) through the kiem CLI.",
+  "name": "kiem-agent",
+  "version": "0.2.0",
+  "description": "Kiem-native agent workflow — plan, work, review, and compound, keeping project state (notes, todos, plans, reviews, learnings) in Kiem via the kiem CLI.",
   "author": { "name": "Tijs Teulings" }
 }
