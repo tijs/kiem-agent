@@ -1,30 +1,30 @@
 # kiem-agent
 
 Agent integrations for [Kiem](https://github.com/tijs/kiem). They teach a coding
-agent to read and maintain **project state — notes, todos, plans, reviews,
-learnings — in Kiem** instead of reconstructing it from the repo every session,
-and give it a lean, token-economical **plan → work → review → compound** workflow
-where every artifact lives in Kiem (typed, tagged to the project, editable across
-machines) rather than in gitignored repo files.
+agent to keep its **project state — notes, todos, plans, reviews, learnings — in
+Kiem**, instead of reconstructing it from the repo every session. Every artifact is
+a typed note, tagged to the project and editable across machines, so the agent
+follows a lean **plan → work → review → compound** loop without scattering state
+across gitignored repo files.
 
-Kiem itself (the app + Rust core + `kiem` CLI) lives in the `kiem-app` repo. This
-repo is optional: Kiem works without it. It exists to make the agent-facing side
-installable per ecosystem.
+Kiem itself — the app, Rust core, and `kiem` CLI — lives in the `kiem-app` repo.
+This repo is optional: Kiem works without it. It exists to make the agent-facing
+side installable per ecosystem.
 
 ## The model
 
 The **`kiem` CLI is the universal substrate.** Any agent that can run a shell can
-participate: it reads `kiem todos` / `kiem notes` and records progress with
-`kiem note add` / `kiem todo check`. A repo binds to a project via a committed
-`.kiem` marker (see `kiem-app/docs/specs/kiem-project-marker.md`).
+participate: it reads state with `kiem todos` / `kiem notes` and records progress
+with `kiem note add` / `kiem todo check`. A repo binds to a project through a
+committed `.kiem` marker (see `kiem-app/docs/specs/kiem-project-marker.md`).
 
-Each integration is a thin wrapper that points its agent at that CLI.
+Each integration is just a thin wrapper pointing its agent at that CLI.
 
 ## The skills
 
-`kiem-projects` is the base contract (read state first, record progress back). The
-rest are a Kiem-native mirror of a compound-engineering workflow — simpler, fewer
-sub-agents, and storing every artifact in Kiem as a typed note:
+`kiem-projects` is the base contract: read state first, record progress back. The
+rest mirror a compound-engineering workflow, Kiem-native — simpler, fewer
+sub-agents, each artifact stored as a typed note:
 
 | Skill | Does | Writes to Kiem |
 |-------|------|----------------|
@@ -41,13 +41,13 @@ sub-agents, and storing every artifact in Kiem as a typed note:
 
 ## Pi — the reference integration
 
-[Pi](https://pi.dev) gets the deepest integration: a native **extension** that
-exposes the CLI as first-class tools, plus the **skills** that say when to use
-them. This is where the CLI + skills are tuned to work as one unit; other agents
-are duplicated from here. See **[`pi/README.md`](pi/README.md)**.
+[Pi](https://pi.dev) gets the deepest integration: a native **extension** exposing
+the CLI as first-class tools, plus the **skills** that say when to reach for them.
+This is where CLI and skills are tuned to work as one unit; other agents are
+duplicated from here. See **[`pi/README.md`](pi/README.md)**.
 
-This repo is a **Pi package** (see `package.json`'s `pi` manifest), so one command
-installs the extension **and** all the skills:
+The repo is itself a **Pi package** (see the `pi` manifest in `package.json`), so
+one command installs the extension **and** every skill:
 
 ```bash
 pi install git:github.com/tijs/kiem-agent     # extension + all skills, one line
