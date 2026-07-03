@@ -23,8 +23,10 @@ automatically. You rarely type the tag — just run `kiem` from inside the repo.
 
 ## At the start of a session
 
-1. Confirm the project: `kiem project current` (prints `proj/<slug>`; if it errors,
-   the repo isn't onboarded — see "Onboarding" below).
+1. Confirm the project: `kiem project current` (prints `proj/<slug>`). It falls
+   back to the directory name even without a committed `.kiem` marker, so also
+   check the marker exists (`.kiem` in the repo root) — no marker means not
+   onboarded yet, even if this doesn't error. See **kiem-onboard**.
 2. Read the state instead of re-deriving it:
    - `kiem todos` — the open task list (each line: `<note-id>  <index>  <text>`).
    - `kiem notes` — the project's notes (decisions, context, plans, learnings).
@@ -57,12 +59,6 @@ That is your ground truth for "what is this project and what's left."
   one kind back with `kiem notes --type <kind>`.
 - Keep notes small and purposeful — one decision or task list per note — so the
   human can scan them in the app.
-
-## Onboarding a repo (only if `kiem project current` fails or the user asks)
-
-`kiem project add "<Project Name>"` — run from the repo root. It writes the
-committed `.kiem` marker, adds an `AGENTS.md` pointer, and creates a home note.
-Idempotent: re-running just (re)binds this directory.
 
 ## Notes
 
