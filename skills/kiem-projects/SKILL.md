@@ -23,10 +23,9 @@ automatically. You rarely type the tag — just run `kiem` from inside the repo.
 
 ## At the start of a session
 
-1. Confirm the project: `kiem project current` (prints `proj/<slug>`). It falls
-   back to the directory name even without a committed `.kiem` marker, so also
-   check the marker exists (`.kiem` in the repo root) — no marker means not
-   onboarded yet, even if this doesn't error. See **kiem-onboard**.
+1. Confirm the project: `kiem project current --json` — check its `onboarded`
+   field, not just success (it always succeeds via a directory-name fallback
+   even with no committed marker). Not onboarded → see **kiem-onboard**.
 2. Read the state instead of re-deriving it:
    - `kiem todos` — the open task list (each line: `<note-id>  <index>  <text>`).
    - `kiem notes` — the project's notes (decisions, context, plans, learnings).

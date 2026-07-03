@@ -4,8 +4,9 @@ description: >-
   Onboard an existing repo into Kiem: create the committed `.kiem` marker, add
   the `AGENTS.md` pointer and home note, then offer to import pre-existing
   AI-generated project docs (plans, brainstorms, solutions, decisions, reviews)
-  into Kiem notes. Use when `kiem project current` fails, or the user says
-  "onboard project", "onboard this repo", "add project to kiem", "add this to
+  into Kiem notes. Use when `kiem project current` shows the repo isn't
+  onboarded, or the user says "onboard project", "onboard this repo", "add
+  project to kiem", "add this to
   kiem", or asks directly to onboard/register a repo with Kiem.
 ---
 
@@ -16,10 +17,8 @@ and (for genuinely new projects) an offer to fold pre-existing markdown notes
 into Kiem instead of leaving them scattered in the repo.
 
 ## 1. No-op check
-If a committed `.kiem` marker already exists (a `.kiem` file in the repo root —
-not just `kiem project current`'s directory-name fallback, which resolves even
-without a marker), the repo is already onboarded. Report the current project
-and stop; don't re-run `add`.
+`kiem project current --json` — if `onboarded` is `true`, the repo is already
+onboarded. Report the current project and stop; don't re-run `add`.
 
 ## 2. Near-miss check
 Not onboarded yet — run `kiem project list` and compare this repo's obvious
@@ -46,12 +45,14 @@ genuinely new project tag) creates a home note. Idempotent: re-running just
 Only when `add`'s JSON output has a non-null `home_note` (this project tag is
 genuinely new, not a re-bind):
 - `kiem show <home_note>` for its version. The body ends with a blank line then
-  a `#proj/<slug>` tag line that the CLI parses into the note's tags — replace
-  only the content lines *above* that (e.g. `kiem edit-lines <home_note> 1 3`
-  for the fresh 5-line stub `# {name}` / blank / `Project home.` / blank /
-  `#proj/<slug>`) with `# <name> roadmap`, one short description line, and one
-  empty `- [ ] ` stub todo, passing `--expect <version>`. Never widen the range
-  over the trailing blank+tag lines — that strips the note's project tag.
+  a `#proj/<slug>` tag line (that's what makes the note a project home note) —
+  replace only the content lines *above* it (e.g. `kiem edit-lines <home_note>
+  1 3` for the fresh 5-line stub `# {name}` / blank / `Project home.` / blank
+  / `#proj/<slug>`) with `# <name> roadmap`, one short description line, and
+  one empty `- [ ] ` stub todo, passing `--expect <version>`. The CLI refuses
+  an edit that would drop the note's only tag, so a range that's too wide
+  errors instead of silently corrupting the note — but get it right the first
+  time and skip the round-trip.
   This home note **is** the roadmap — don't also write a repo file for it.
 - Best-effort scan `AGENTS.md`, `README*`, `CLAUDE.md`, `docs/plans/*`,
   `docs/roadmap*` for literal `- [ ] ` / `TODO:` lines; `kiem todo add
