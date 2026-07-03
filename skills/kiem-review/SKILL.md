@@ -22,6 +22,10 @@ Always run the **core three**; add a conditional lens only when the diff touches
 its area. Each lens is one focused reviewer; run at most 4 at once.
 
 - **Core (always):** correctness · tests · simplicity (ponytail — flag over-engineering).
+  For a docs/prose-only diff (skill files, specs, READMEs — no executable
+  surface), reinterpret the tests lens as a verification/edge-case audit of
+  the described procedure instead: failure paths, ambiguous branches,
+  internal contradictions between sections.
 - **Conditional (fire only on a match):**
   - **cross-language parity** — `content.rs`, Pulp's `ContentAnalyzer`, or
     `fixtures/*` changed: verify the Rust and Swift derivations stay byte-identical
