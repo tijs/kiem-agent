@@ -22,14 +22,17 @@ Each integration is just a thin wrapper pointing its agent at that CLI.
 
 ## The skills
 
-`kiem-projects` is the base contract: read state first, record progress back. The
-rest are a Kiem-native take on [Every's Compound Engineering
-loop](https://github.com/EveryInc/compound-engineering-plugin) (brainstorm → plan →
-work → review → compound, plus `lfg` for the hands-off autopilot run) — same shape,
-reimplemented to read/write Kiem notes instead of repo files, with fewer sub-agents:
+`kiem-onboard` brings a repo in; `kiem-projects` is the base contract for
+working inside it: read state first, record progress back. The rest are a
+Kiem-native take on [Every's Compound Engineering
+loop](https://github.com/EveryInc/compound-engineering-plugin) (brainstorm →
+plan → work → review → compound, plus `lfg` for the hands-off autopilot run) —
+same shape, reimplemented to read/write Kiem notes instead of repo files, with
+fewer sub-agents:
 
 | Skill | Does | Writes to Kiem |
 |-------|------|----------------|
+| **kiem-onboard** | Bring an existing repo into Kiem | `.kiem` marker, home note |
 | **kiem-projects** | Base: read/maintain project state via the CLI | notes, todos |
 | **kiem-brainstorm** | Explore WHAT to build | `brainstorm` note |
 | **kiem-plan** | Write a lean implementation plan | `plan` note (its `- [ ]` become todos) |
@@ -54,7 +57,7 @@ one command installs the extension **and** every skill:
 ```bash
 pi install git:github.com/tijs/kiem-agent     # extension + all skills, one line
 #   ...pinned to a tag/commit:
-pi install git:github.com/tijs/kiem-agent@v0.2.0
+pi install git:github.com/tijs/kiem-agent@v0.3.0
 #   ...or from a local checkout (dev):
 pi install /path/to/kiem-agent
 #   ...try it for one session without installing:
@@ -77,7 +80,7 @@ Prerequisite: the `kiem` CLI on `PATH` (Kiem app → *Install Command Line Tool*
 ```
 pi/                    Pi extension (kiem.ts) + skill install guide + smoke test
 skills/                Kiem-native skills (Agent Skills standard; also standalone):
-                       kiem-projects, kiem-plan, kiem-work, …
+                       kiem-onboard, kiem-projects, kiem-plan, kiem-work, …
 .claude-plugin/        Claude Code plugin + marketplace manifests
 integrations/          AGENTS.md pointer for Codex/generic agents
 ```
