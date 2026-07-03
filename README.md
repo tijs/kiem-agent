@@ -23,8 +23,10 @@ Each integration is just a thin wrapper pointing its agent at that CLI.
 ## The skills
 
 `kiem-projects` is the base contract: read state first, record progress back. The
-rest mirror a compound-engineering workflow, Kiem-native — simpler, fewer
-sub-agents, each artifact stored as a typed note:
+rest are a Kiem-native take on [Every's Compound Engineering
+loop](https://github.com/EveryInc/compound-engineering-plugin) (brainstorm → plan →
+work → review → compound, plus `lfg` for the hands-off autopilot run) — same shape,
+reimplemented to read/write Kiem notes instead of repo files, with fewer sub-agents:
 
 | Skill | Does | Writes to Kiem |
 |-------|------|----------------|
@@ -85,3 +87,7 @@ integrations/          AGENTS.md pointer for Codex/generic agents
 The skills and extension describe the `kiem` CLI surface, which lives in `kiem-app`.
 When that surface changes, update `pi/kiem.ts` and the affected `skills/*/SKILL.md`
 here. The durable contract is `kiem-app/docs/specs/kiem-project-marker.md`.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
