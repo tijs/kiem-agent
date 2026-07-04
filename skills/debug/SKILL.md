@@ -1,5 +1,5 @@
 ---
-name: kiem-debug
+name: debug
 description: >-
   Systematically root-cause a bug in a Kiem-bound project and record the finding
   as a Kiem `solution`/`decision` note. Use when debugging errors, test failures,
@@ -25,7 +25,7 @@ solved before? Reuse the fix rather than re-deriving it.
 ## 3. Record in Kiem
 If the root cause was non-obvious or will bite again, capture it:
 `kiem note add --type solution "<problem / root cause / fix / how to avoid>"`
-(or hand off to **kiem-compound**). Add any follow-up work with
+(or hand off to **compound**). Add any follow-up work with
 `kiem todo add <note-id> "<text>"`.
 
 ## Notes

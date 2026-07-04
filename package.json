@@ -1,6 +1,6 @@
 {
-  "name": "kiem-agent",
-  "version": "0.3.1",
+  "name": "kiem",
+  "version": "0.4.0",
   "description": "Kiem-native agent workflow for Pi — plan, work, review, and compound, keeping project state (notes, todos, plans, reviews, learnings) in Kiem via the kiem CLI.",
   "keywords": ["pi-package", "kiem"],
   "author": "Tijs Teulings",

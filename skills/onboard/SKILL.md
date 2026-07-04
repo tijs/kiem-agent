@@ -1,5 +1,5 @@
 ---
-name: kiem-onboard
+name: onboard
 description: >-
   Onboard an existing repo into Kiem: create the committed `.kiem` marker, add
   the `AGENTS.md` pointer and home note, then offer to import pre-existing
@@ -45,29 +45,28 @@ committed `.kiem` marker, adds an `AGENTS.md` pointer, and (only for a
 genuinely new project tag) creates a home note. Idempotent: re-running just
 (re)binds the directory, no duplicate home note.
 
-## 4. Starter content
+## 4. Project home note
 
 Only when `add`'s JSON output has a non-null `home_note` (this project tag is
 genuinely new, not a re-bind):
 
-- `kiem show <home_note>` for its version. The body ends with a blank line then
-  a `#proj/<slug>` tag line (that's what makes the note a project home note) —
-  replace only the content lines *above* it (e.g. `kiem edit-lines <home_note>
-  1 3` for the fresh 5-line stub `# {name}` / blank / `Project home.` / blank
-  / `#proj/<slug>`) with `# <name> roadmap`, one short description line, and
-  one empty `- [ ]` stub todo, passing `--expect <version>`. The CLI refuses
-  an edit that would drop the note's only tag, so a range that's too wide
-  errors instead of silently corrupting the note — but get it right the first
-  time and skip the round-trip.
-  This home note **is** the roadmap — don't also write a repo file for it.
+- Do **not** create a roadmap or empty todo. The project folder/tag is enough;
+  users can add their own tasks when they have real work.
+- Keep the generated home note as a short onboarding note. After step 5, edit
+  only the content lines *above* the final `#proj/<slug>` tag to include:
+  `# <name>`, one short project description line, an `Imported:` line, a
+  `Skipped:` line, and one sentence: `Use plan, work, review, and
+  compound to keep project state here.` Pass `--expect <version>` from
+  `kiem show <home_note>`. The CLI refuses an edit that would drop the note's
+  only tag, so don't include the tag line in the edit range.
 - Best-effort scan `AGENTS.md`, `README*`, `CLAUDE.md`, `docs/plans/*`,
   `docs/roadmap*` for literal `- [ ]` / `TODO:` lines; `kiem todo add
   <home_note> "<text>"` each one found. Don't summarize prose into tasks —
-  literal checklist syntax only.
+  literal checklist syntax only. If none exist, add none.
 
 ## 5. Import pre-existing kiem-shaped docs
 
-Same new-project branch, after starter content. Scan the whole repo
+Same new-project branch, before filling the home note. Scan the whole repo
 (respecting `.gitignore`) for markdown files, but only offer note-like,
 ephemeral project-memory docs — not generic repo/docs markdown. A clear H1 or
 YAML frontmatter is a quality check, not enough by itself.
@@ -93,6 +92,10 @@ YAML frontmatter is a quality check, not enough by itself.
   **once** more for the whole batch: delete the original files (plain `rm`,
   no `git rm`, no auto-commit — leaves it in the user's normal git status) or
   leave them in place.
+- When filling the home note from step 4, keep it factual and disposable:
+  `Imported:` should be `none`, `N docs`, or a short comma-separated path list;
+  `Skipped:` should mention common repo files/pure docs skipped by policy and
+  any candidate import the user declined. Don't add placeholder todos.
 - Only runs on a genuinely new project (pre-first-note) — no dedup logic
   needed against notes that don't exist yet.
 
@@ -105,5 +108,5 @@ YAML frontmatter is a quality check, not enough by itself.
   markdown scan have no first-class Pi tool for the *listing* — step 2 needs a
   shell fallback; step 5's file discovery is exactly what the `glob` tool
   does (gitignore-respecting by default).
-- Once onboarded, hand off to **kiem-projects** for ongoing session work
+- Once onboarded, hand off to **projects** for ongoing session work
   (reading state, recording progress).

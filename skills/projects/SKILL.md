@@ -1,5 +1,5 @@
 ---
-name: kiem-projects
+name: projects
 description: >-
   Work on a software project whose notes, todos, and progress live in Kiem (a P2P
   notes store) instead of scattered across the repo. Use at the start of any
@@ -25,7 +25,7 @@ automatically. You rarely type the tag — just run `kiem` from inside the repo.
 
 1. Confirm the project: `kiem project current --json` — check its `onboarded`
    field, not just success (it always succeeds via a directory-name fallback
-   even with no committed marker). Not onboarded → see **kiem-onboard**.
+   even with no committed marker). Not onboarded → see **onboard**.
 2. Read the state instead of re-deriving it:
    - `kiem todos` — the open task list (each line: `<note-id>  <index>  <text>`).
    - `kiem notes` — the project's notes (decisions, context, plans, learnings).

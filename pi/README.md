@@ -4,7 +4,7 @@ The reference integration. Two parts that work as a unit:
 
 1. **Extension** (`kiem.ts`) — registers the `kiem` CLI as native Pi tools, so the
    agent reads and writes project state as first-class tool calls.
-2. **Skill** (`../skills/kiem-projects/`) — tells the agent *when* to use them
+2. **Skill** (`../skills/projects/`) — tells the agent *when* to use them
    (read state first, record progress back).
 
 ## Prerequisite
@@ -31,7 +31,7 @@ pi install /path/to/kiem-agent                     # extension + all skills
 pi -e /path/to/kiem-agent/pi/kiem.ts               # just this extension, one session
 ```
 
-Verify with `pi list` (packages) and `/skill:kiem-plan` (etc.) inside a session.
+Verify with `pi list` (packages) and `/skill:plan` (etc.) inside a session.
 
 ## Tools the extension registers
 

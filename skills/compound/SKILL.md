@@ -1,5 +1,5 @@
 ---
-name: kiem-compound
+name: compound
 description: >-
   Document a just-solved problem as a Kiem `solution` note so the project's
   long-term memory compounds instead of scattering into repo files. Use right

@@ -1,5 +1,5 @@
 ---
-name: kiem-plan
+name: plan
 description: >-
   Produce a lean implementation plan for a feature in a Kiem-bound project and
   save it as a Kiem `plan` note (tagged proj/<slug>). Reads current project state
@@ -17,7 +17,7 @@ next agent reads it from Kiem — nothing is written to the project directory.
 
 ## 1. Read the state first (don't re-derive from code)
 - `kiem project current --json` — confirm the project (`proj/<slug>`); if
-  `onboarded` is `false`, the repo isn't onboarded — see **kiem-onboard**.
+  `onboarded` is `false`, the repo isn't onboarded — see **onboard**.
 - `kiem notes --type plan` — existing plans (extend one rather than duplicate).
 - `kiem notes` — decisions, context, prior learnings.
 - `kiem todos` — what's already open.
@@ -41,5 +41,5 @@ focused; split genuinely separate efforts into separate plan notes.
 - **Under Pi:** prefer the native tools — `kiem_notes` (with `type`), `kiem_todos`,
   `kiem_note_add` (with `type: "plan"`). The shell commands are the equivalent for
   any other agent.
-- Hand off to **kiem-work** to execute the plan; it reads this note back from Kiem.
+- Hand off to **work** to execute the plan; it reads this note back from Kiem.
 - Do not spin up reviewer/critic subagents here — planning is a single focused pass.

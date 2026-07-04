@@ -1,5 +1,5 @@
 ---
-name: kiem-review
+name: review
 description: >-
   Review the current changes in a Kiem-bound project with a lean, curated set of
   reviewer lenses, and record findings as a Kiem `review` note plus actionable
@@ -11,7 +11,7 @@ description: >-
 # Kiem review
 
 Review the diff, then record what matters **in Kiem** so findings flow straight
-into the project's Todo filter and the next kiem-work pass.
+into the project's Todo filter and the next work pass.
 
 ## 1. Scope the diff
 Determine what changed (e.g. `git diff` against the base branch, plus untracked

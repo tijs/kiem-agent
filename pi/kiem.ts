@@ -4,7 +4,7 @@
  * Exposes the `kiem` CLI as native Pi tools so an agent reads and maintains a
  * project's shared state (notes + todos, synced across machines and agents)
  * as first-class tool calls instead of ad-hoc shell commands. Pairs with the
- * `kiem-projects` skill, which explains *when* to use these tools.
+ * `projects` skill, which explains *when* to use these tools.
  *
  * Requires the `kiem` CLI on PATH (set KIEM_BIN to override the binary path).
  *

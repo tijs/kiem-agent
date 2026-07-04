@@ -1,5 +1,5 @@
 ---
-name: kiem-work
+name: work
 description: >-
   Execute a plan that lives in Kiem and record all progress back into Kiem —
   check todos, append decisions, add new todos — for a repo with a `.kiem`
@@ -41,4 +41,4 @@ No parallel fan-out here.
   (pass `expect_version` so a concurrent change can't be clobbered).
 - Everything you write to Kiem syncs to the user's other devices within moments —
   treat notes as user-visible; keep them small and purposeful.
-- Reviewing the result is **kiem-review**, not this skill.
+- Reviewing the result is **review**, not this skill.

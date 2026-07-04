@@ -6,7 +6,7 @@
   },
   "plugins": [
     {
-      "name": "kiem-agent",
+      "name": "kiem",
       "source": "./",
       "description": "Kiem-native agent workflow — plan, work, review, compound, and keep project state (notes, todos, plans, learnings) in Kiem via the kiem CLI."
     }

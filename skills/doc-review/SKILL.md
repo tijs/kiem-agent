@@ -1,5 +1,5 @@
 ---
-name: kiem-doc-review
+name: doc-review
 description: >-
   Review a plan or brainstorm note that lives in Kiem with a lean lens set, and
   record findings back into the note or as todos. Use before executing a plan, or

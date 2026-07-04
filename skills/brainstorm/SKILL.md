@@ -1,5 +1,5 @@
 ---
-name: kiem-brainstorm
+name: brainstorm
 description: >-
   Explore requirements for a feature through dialogue and save a lean requirements
   note (type `brainstorm`) in Kiem. Use when the user wants to think through WHAT
@@ -9,7 +9,7 @@ description: >-
 
 # Kiem brainstorm
 
-Figure out **what** to build and why (kiem-plan handles *how*). The output is a
+Figure out **what** to build and why (plan handles *how*). The output is a
 lean `brainstorm` note in Kiem, tagged to the project.
 
 ## 1. Read state first
@@ -28,4 +28,4 @@ criteria, and any open questions. Keep implementation choices out — that's pla
 
 ## Notes
 - **Under Pi:** `kiem_notes` / `kiem_note_add` with `type: "brainstorm"`.
-- Hand off to **kiem-plan**, which reads this note back from Kiem.
+- Hand off to **plan**, which reads this note back from Kiem.

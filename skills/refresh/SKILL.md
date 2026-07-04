@@ -1,5 +1,5 @@
 ---
-name: kiem-refresh
+name: refresh
 description: >-
   Audit and reorganize a Kiem project's long-term memory — stale `solution` and
   `decision` notes — keeping it accurate and lean. Use when the memory has drifted
@@ -29,5 +29,5 @@ Summarize what changed (updated / merged / removed) so the human can eyeball it.
 
 ## Notes
 - **Under Pi:** `kiem_notes` / `kiem_show` / `kiem_edit_lines`.
-- **Do not touch `plan` notes mid-execution** — kiem-work owns those.
+- **Do not touch `plan` notes mid-execution** — work owns those.
 - This is the long-term-memory janitor; it never changes code.

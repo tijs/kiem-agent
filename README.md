@@ -1,4 +1,4 @@
-# kiem-agent
+# kiem
 
 Agent integrations for [Kiem](https://github.com/tijs/kiem). They teach a coding
 agent to keep its **project state — notes, todos, plans, reviews, learnings — in
@@ -22,7 +22,7 @@ Each integration is just a thin wrapper pointing its agent at that CLI.
 
 ## The skills
 
-`kiem-onboard` brings a repo in; `kiem-projects` is the base contract for
+`onboard` brings a repo in; `projects` is the base contract for
 working inside it: read state first, record progress back. The rest are a
 Kiem-native take on [Every's Compound Engineering
 loop](https://github.com/EveryInc/compound-engineering-plugin) (brainstorm →
@@ -32,17 +32,17 @@ fewer sub-agents:
 
 | Skill | Does | Writes to Kiem |
 |-------|------|----------------|
-| **kiem-onboard** | Bring an existing repo into Kiem | `.kiem` marker, home note |
-| **kiem-projects** | Base: read/maintain project state via the CLI | notes, todos |
-| **kiem-brainstorm** | Explore WHAT to build | `brainstorm` note |
-| **kiem-plan** | Write a lean implementation plan | `plan` note (its `- [ ]` become todos) |
-| **kiem-work** | Execute a plan, record progress | checked todos, `decision` notes |
-| **kiem-review** | Curated lens roster (cap 4), by diff | `review` note + `- [ ]` todos |
-| **kiem-compound** | Capture a solved problem | `solution` note |
-| **kiem-debug** | Root-cause a bug, record the lesson | `solution` note |
-| **kiem-doc-review** | Critique a plan/brainstorm note | edits + todos |
-| **kiem-refresh** | Keep long-term memory tidy | updates/merges notes |
-| **kiem-lfg** | Orchestrate the whole loop | all of the above |
+| **onboard** | Bring an existing repo into Kiem | `.kiem` marker, home note |
+| **projects** | Base: read/maintain project state via the CLI | notes, todos |
+| **brainstorm** | Explore WHAT to build | `brainstorm` note |
+| **plan** | Write a lean implementation plan | `plan` note (its `- [ ]` become todos) |
+| **work** | Execute a plan, record progress | checked todos, `decision` notes |
+| **review** | Curated lens roster (cap 4), by diff | `review` note + `- [ ]` todos |
+| **compound** | Capture a solved problem | `solution` note |
+| **debug** | Root-cause a bug, record the lesson | `solution` note |
+| **doc-review** | Critique a plan/brainstorm note | edits + todos |
+| **refresh** | Keep long-term memory tidy | updates/merges notes |
+| **lfg** | Orchestrate the whole loop | all of the above |
 
 ## Pi — the reference integration
 
@@ -57,7 +57,7 @@ one command installs the extension **and** every skill:
 ```bash
 pi install git:github.com/tijs/kiem-agent     # extension + all skills, one line
 #   ...pinned to a tag/commit:
-pi install git:github.com/tijs/kiem-agent@v0.3.1
+pi install git:github.com/tijs/kiem-agent@v0.4.0
 #   ...or from a local checkout (dev):
 pi install /path/to/kiem-agent
 #   ...try it for one session without installing:
@@ -71,7 +71,7 @@ Prerequisite: the `kiem` CLI on `PATH` (Kiem app → *Install Command Line Tool*
 
 | Agent | Mechanism | Status |
 |-------|-----------|--------|
-| **Claude Code** | Plugin / skill (this repo is also a marketplace) | scaffolded — `/plugin marketplace add tijs/kiem-agent` → `/plugin install kiem-agent@kiem`, or `npx openskills install skills/<name>` |
+| **Claude Code** | Plugin / skill (this repo is also a marketplace) | scaffolded — `/plugin marketplace add tijs/kiem-agent` → `/plugin install kiem@kiem`, or `npx openskills install skills/<name>` |
 | **Codex** (or any `AGENTS.md` reader) | `AGENTS.md` pointer | `integrations/AGENTS.md.snippet` (written into each repo by `kiem project add`) |
 | **GitHub Copilot** | Repo custom instructions | planned |
 
@@ -80,7 +80,7 @@ Prerequisite: the `kiem` CLI on `PATH` (Kiem app → *Install Command Line Tool*
 ```
 pi/                    Pi extension (kiem.ts) + skill install guide + smoke test
 skills/                Kiem-native skills (Agent Skills standard; also standalone):
-                       kiem-onboard, kiem-projects, kiem-plan, kiem-work, …
+                       onboard, projects, plan, work, …
 .claude-plugin/        Claude Code plugin + marketplace manifests
 integrations/          AGENTS.md pointer for Codex/generic agents
 ```
