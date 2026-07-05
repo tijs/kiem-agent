@@ -34,6 +34,11 @@ No parallel fan-out here.
 - **Amend the plan surgically:** from `kiem show` take the line numbers + `version`,
   then `kiem edit-lines <id> <start> <end> --text "…" --expect <version>`. Never
   rewrite the whole body — targeted edits are safe and cheap.
+- **Finishing a plan:** once every implementation unit is checked off, if the
+  plan note has a `status: active` frontmatter line, flip it to `status:
+  completed` with the same `kiem edit-lines` surgical-edit approach. Skip this
+  for older plans that predate the frontmatter convention — don't retrofit it
+  unless asked.
 
 ## Notes
 - **Under Pi:** prefer native tools — `kiem_notes`, `kiem_show`, `kiem_todos`,

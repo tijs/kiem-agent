@@ -33,9 +33,24 @@ Keep it decision-dense, not ceremonial. Cover:
 - **Test scenarios** per feature-bearing unit (specific inputs/outcomes).
 
 ## 3. Save it to Kiem
-`kiem note add --type plan "<plan markdown>"` — the first line is the title; the
-`- [ ]` unit lines become open project todos automatically. Keep the plan
-focused; split genuinely separate efforts into separate plan notes.
+Prefix the markdown with a `status: active` frontmatter fence, then the title
+on the next line:
+```
+---
+status: active
+---
+Plan: <title>
+...
+```
+`kiem note add --type plan "<plan markdown>"` — the title is still the first
+content line (frontmatter doesn't count), and the `- [ ]` unit lines become
+open project todos automatically. Keep the plan focused; split genuinely
+separate efforts into separate plan notes.
+
+The frontmatter is plain markdown the Kiem app already renders as a callout
+and surfaces in its status bar/sidebar — not a Kiem-specific field. `active`/
+`completed` matches this user's existing convention across their other repos;
+**work** flips it to `completed` when the plan's units are all done.
 
 ## Notes
 - **Under Pi:** prefer the native tools — `kiem_notes` (with `type`), `kiem_todos`,

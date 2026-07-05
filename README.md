@@ -57,7 +57,7 @@ one command installs the extension **and** every skill:
 ```bash
 pi install git:github.com/tijs/kiem-agent     # extension + all skills, one line
 #   ...pinned to a tag/commit:
-pi install git:github.com/tijs/kiem-agent@v0.4.0
+pi install git:github.com/tijs/kiem-agent@v0.4.1
 #   ...or from a local checkout (dev):
 pi install /path/to/kiem-agent
 #   ...try it for one session without installing:
