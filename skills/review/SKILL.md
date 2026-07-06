@@ -48,4 +48,9 @@ Don't add lenses beyond these; don't run a lens whose area the diff doesn't touc
 ## Notes
 - **Under Pi:** use `kiem_note_add` (with `type: "review"`) and `kiem_todo_add`;
   spawn reviewer lenses with your platform's subagent mechanism, capped at 4.
+- **Under Claude Code:** launch lenses as concurrent subagents. Do **not** use the
+  `Monitor` tool to watch them unless you have first loaded its schema with
+  `ToolSearch` and you pass the required `description`, `timeout_ms`
+  (milliseconds, not `wait_minutes`), and `persistent` fields. Prefer letting
+  the subagent call itself wait and return results inline.
 - Prefer fewer, sharper reviewers over many shallow ones — the point is signal per token.
