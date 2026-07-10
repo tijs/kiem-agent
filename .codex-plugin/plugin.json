@@ -1,0 +1,11 @@
+{
+  "name": "kiem",
+  "version": "0.6.0",
+  "description": "Kiem-native project workflows backed by shared notes and todos.",
+  "author": {
+    "name": "Tijs Teulings"
+  },
+  "repository": "https://github.com/tijs/kiem-agent",
+  "license": "MIT",
+  "skills": "./skills/"
+}

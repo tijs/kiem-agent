@@ -1,0 +1,32 @@
+{
+  "name": "kiem",
+  "interface": {
+    "displayName": "Kiem"
+  },
+  "plugins": [
+    {
+      "name": "kiem",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "kiem-maintainer",
+      "source": {
+        "source": "local",
+        "path": "./plugins/kiem-maintainer"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

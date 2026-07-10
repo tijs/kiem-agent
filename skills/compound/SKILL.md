@@ -14,12 +14,18 @@ note tagged to the project, so the next agent (or you, on another machine) finds
 it instead of re-solving it.
 
 ## When
+
 After something non-obvious was solved: a subtle bug, a root cause that took real
 digging, a gotcha that will bite again, a decision with non-obvious rationale.
 Skip it for trivial fixes — memory has a carrying cost too.
 
+If the recent run solved more than one non-trivial problem, list the candidates
+and ask which to compound. Do not guess.
+
 ## Capture (small and purposeful)
+
 One note, covering:
+
 - **Problem** — the symptom, briefly.
 - **Root cause** — what was actually wrong (the part worth remembering).
 - **Fix** — what resolved it.
@@ -29,6 +35,7 @@ One note, covering:
 it scannable in the app.
 
 ## Notes
+
 - **Under Pi:** use `kiem_note_add` with `type: "solution"`.
 - Before writing, `kiem notes --type solution` to check an existing note already
   covers it — update rather than duplicate.

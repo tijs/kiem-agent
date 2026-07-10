@@ -8,7 +8,12 @@
     {
       "name": "kiem",
       "source": "./",
-      "description": "Kiem-native agent workflow — plan, work, review, compound, and keep project state (notes, todos, plans, learnings) in Kiem via the kiem CLI."
+      "description": "Public Kiem project workflows backed by shared notes and todos."
+    },
+    {
+      "name": "kiem-maintainer",
+      "source": "./plugins/kiem-maintainer",
+      "description": "Maintainer-only introspection and release workflows for the Kiem agent packages."
     }
   ]
 }

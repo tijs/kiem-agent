@@ -1,13 +1,30 @@
 {
   "name": "kiem",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Kiem-native agent workflow for Pi — plan, work, review, and compound, keeping project state (notes, todos, plans, reviews, learnings) in Kiem via the kiem CLI.",
-  "keywords": ["pi-package", "kiem"],
+  "keywords": [
+    "pi-package",
+    "kiem"
+  ],
   "author": "Tijs Teulings",
   "license": "MIT",
+  "files": [
+    ".claude-plugin",
+    ".codex-plugin/plugin.json",
+    ".agents",
+    "gemini-extension.json",
+    "pi",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
   "pi": {
-    "extensions": ["./pi/kiem.ts"],
-    "skills": ["./skills"]
+    "extensions": [
+      "./pi/kiem.ts"
+    ],
+    "skills": [
+      "./skills"
+    ]
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*",

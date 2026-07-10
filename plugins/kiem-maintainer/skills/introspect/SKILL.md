@@ -1,5 +1,6 @@
 ---
 name: introspect
+license: MIT
 description: >-
   Maintainer-only retro for the Kiem skills themselves. Use after a messy or
   instructive agent run to inspect the conversation and available logs, extract
@@ -26,12 +27,14 @@ the current project's notes.
 Use concrete evidence only. Prefer, in order:
 
 - the current conversation context
-- an explicit pasted transcript, session id/query, or run/log path from the user
-- `session_search` for named past conversations
+- an explicit pasted transcript or readable run/log path from the user
+- `session_search`, when available, for named past conversations
 - readable subagent/run artifacts mentioned in the conversation
 
-If logs are unavailable, say so and use only the transcript. Do not invent
-failure modes from vibes.
+If a supplied session id/query cannot be resolved, ask for a pasted transcript or
+readable log path. If logs are unavailable but a transcript is present, say so
+and use only the transcript. If there is no readable evidence, stop. Do not
+invent failure modes from vibes.
 
 ## 2. Extract skill pain points
 
@@ -50,7 +53,8 @@ Prefer one root-cause todo over several symptoms.
 Before writing, check existing Kiem-agent notes/todos so you do not duplicate a
 known item.
 
-Write one `review` note to the Kiem-agent project, regardless of the current repo:
+If no supported pain point remains, write nothing. Otherwise write one `review`
+note to the Kiem-agent project, regardless of the current repo:
 
 ```text
 Introspection: <run / topic / date>
@@ -59,10 +63,14 @@ Introspection: <run / topic / date>
 <conversation/session/log references used>
 
 ## Findings
-- <short prose finding>
+### <pain point>
+- Symptom: <what happened>
+- Evidence: <failed call, retry, detour, or error>
+- Skill gap: <missing, misleading, or weak instruction>
+- Confidence: <high / medium / low>
 
 ## Improvement todos
-- [ ] <actionable skill improvement, naming the skill/file if known>
+- [ ] <smallest preventative change, naming the skill/file if known>
 ```
 
 ## Notes

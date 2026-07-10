@@ -1,0 +1,5 @@
+{
+  "name": "kiem-maintainer",
+  "version": "0.1.0",
+  "description": "Maintainer-only introspection and release workflows for the Kiem agent packages."
+}

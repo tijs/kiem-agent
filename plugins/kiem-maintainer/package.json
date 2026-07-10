@@ -1,0 +1,19 @@
+{
+  "name": "kiem-maintainer",
+  "version": "0.1.0",
+  "description": "Maintainer-only skills for developing and releasing the Kiem agent packages.",
+  "keywords": ["pi-package", "kiem", "agent-skills"],
+  "author": "Tijs Teulings",
+  "license": "MIT",
+  "files": [
+    ".claude-plugin",
+    ".codex-plugin",
+    "gemini-extension.json",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "pi": {
+    "skills": ["./skills"]
+  }
+}
