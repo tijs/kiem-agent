@@ -74,10 +74,13 @@ pi install git:github.com/tijs/kiem-agent@v0.6.0
 Maintainers install the separate companion package as well:
 
 ```bash
-pi install npm:kiem-maintainer
-# local development before publication:
+# from a local checkout
 pi install /path/to/repo/plugins/kiem-maintainer
 ```
+
+Pi installs from a git repository root, so the maintainer package cannot be
+installed from GitHub remotely without an npm mirror. Other agents (Claude,
+Codex, Copilot, Gemini) can install the subpath directly from the same repo.
 
 The two package roots keep maintainer skills out of normal Pi installs.
 

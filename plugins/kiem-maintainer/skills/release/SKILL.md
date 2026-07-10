@@ -70,8 +70,10 @@ commit and repeat verification.
 1. Push `main` and require success.
 2. Create the annotated tag on the pushed commit.
 3. Push that tag explicitly.
-4. Publish the target npm package when npm distribution is intended.
-5. Create the GitHub release using a notes file, not an interpolated shell body.
+4. Create the GitHub release using a notes file, not an interpolated shell body.
+
+Skip npm unless the project explicitly distributes through npm. This repo uses
+GitHub releases and git-based installs by default; npm is an optional mirror.
 
 Do not publish, tag, or create a GitHub release without the user's explicit
 release request.
@@ -85,7 +87,7 @@ Require all of these to resolve to the same commit/version:
 - peeled remote tag
 - GitHub release tag
 - package and host-manifest versions
-- npm version, when published
 
 Record one concise `solution` note in `proj/kiem_agent` with version, commit, and
-release URL. Report commit, push, tag, npm, and GitHub release status explicitly.
+release URL. Report commit, push, tag, and GitHub release status explicitly;
+mention npm only if npm distribution was requested.
