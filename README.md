@@ -5,7 +5,8 @@ agent to keep its **project state — notes, todos, plans, reviews, learnings �
 Kiem**, instead of reconstructing it from the repo every session. Every artifact is
 a typed note, tagged to the project and editable across machines, so the agent
 follows a lean **plan → work → review → compound** loop without scattering state
-across gitignored repo files.
+across gitignored repo files. It also has a maintainer-only `introspect` skill
+for improving the skills themselves from past run friction.
 
 Kiem itself — the app, Rust core, and `kiem` CLI — lives in the `kiem-app` repo.
 This repo is optional: Kiem works without it. It exists to make the agent-facing
@@ -39,6 +40,7 @@ fewer sub-agents:
 | **work** | Execute a plan, record progress | checked todos, `decision` notes |
 | **review** | Curated lens roster (cap 4), by diff | `review` note + `- [ ]` todos |
 | **compound** | Capture a solved problem | `solution` note |
+| **introspect** | Maintainer skill retro | `review` in `proj/kiem_agent` |
 | **debug** | Root-cause a bug, record the lesson | `solution` note |
 | **doc-review** | Critique a plan/brainstorm note | edits + todos |
 | **refresh** | Keep long-term memory tidy | updates/merges notes |
@@ -57,7 +59,7 @@ one command installs the extension **and** every skill:
 ```bash
 pi install git:github.com/tijs/kiem-agent     # extension + all skills, one line
 #   ...pinned to a tag/commit:
-pi install git:github.com/tijs/kiem-agent@v0.4.1
+pi install git:github.com/tijs/kiem-agent@v0.5.0
 #   ...or from a local checkout (dev):
 pi install /path/to/kiem-agent
 #   ...try it for one session without installing:
@@ -80,7 +82,7 @@ Prerequisite: the `kiem` CLI on `PATH` (Kiem app → *Install Command Line Tool*
 ```
 pi/                    Pi extension (kiem.ts) + skill install guide + smoke test
 skills/                Kiem-native skills (Agent Skills standard; also standalone):
-                       onboard, projects, plan, work, …
+                       onboard, projects, plan, work, introspect, …
 .claude-plugin/        Claude Code plugin + marketplace manifests
 integrations/          AGENTS.md pointer for Codex/generic agents
 ```
