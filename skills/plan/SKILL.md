@@ -42,7 +42,9 @@ status: active
 Plan: <title>
 ...
 ```
-`kiem note add --type plan "<plan markdown>"` — the title is still the first
+Write the plan to a file, then `kiem note add --type plan --file plan.md` —
+`--file` keeps a body with backticks or `$(...)` intact (inlining raw markdown as a
+quoted argument lets the shell interpolate it). The title is still the first
 content line (frontmatter doesn't count), and the `- [ ]` unit lines become
 open project todos automatically. Keep the plan focused; split genuinely
 separate efforts into separate plan notes.

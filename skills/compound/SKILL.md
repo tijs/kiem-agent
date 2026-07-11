@@ -31,7 +31,9 @@ One note, covering:
 - **Fix** — what resolved it.
 - **How to avoid / detect next time** — the reusable lesson.
 
-`kiem note add --type solution "<markdown>"` — the first line is the title; keep
+Write the note to a file, then `kiem note add --type solution --file solution.md` —
+`--file` keeps a body with backticks or `$(...)` intact (inlining raw markdown as a
+quoted argument lets the shell interpolate it). The first line is the title; keep
 it scannable in the app.
 
 ## Notes

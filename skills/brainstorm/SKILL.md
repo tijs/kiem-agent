@@ -22,7 +22,9 @@ non-goals → success criteria. Bring alternatives and challenge assumptions; do
 just extract. Stop when the idea is clear enough to plan.
 
 ## 3. Save it
-`kiem note add --type brainstorm "<requirements markdown>"` — problem frame, who
+Write the note to a file, then `kiem note add --type brainstorm --file note.md` —
+`--file` keeps a body with backticks or `$(...)` intact (inlining raw markdown as a
+quoted argument lets the shell interpolate it). Cover the problem frame, who
 benefits and what changes for them, scope boundaries (explicit non-goals), success
 criteria, and any open questions. Keep implementation choices out — that's planning.
 
