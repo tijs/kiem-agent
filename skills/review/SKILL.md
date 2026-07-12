@@ -42,6 +42,14 @@ Don't add lenses beyond these; don't run a lens whose area the diff doesn't touc
 
 ## 3. Record findings in Kiem
 
+- Resolve the project with `kiem project current --json`. If it returns a
+  project but `onboarded: false`, pass it explicitly to Kiem note and todo
+  operations (`--project proj/<slug>` or the native tool's `project` argument).
+  **Do not onboard the repo as a side effect of review.**
+  Adding or committing `.kiem` / `AGENTS.md` requires an explicit user request,
+  especially in third-party open-source repositories. If the user asks for
+  local-only metadata, exclude it with `.git/info/exclude` so it cannot enter
+  the review diff.
 - Write one `review` note: `kiem note add --type review "<summary + findings>"`.
 - **Auto-open the actionable findings as todos** — include `- [ ]` lines in that
   note (they become project todos), or `kiem todo add <note-id> "<fix>"`. This is

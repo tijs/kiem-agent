@@ -25,7 +25,12 @@ automatically. You rarely type the tag — just run `kiem` from inside the repo.
 
 1. Confirm the project: `kiem project current --json` — check its `onboarded`
    field, not just success (it always succeeds via a directory-name fallback
-   even with no committed marker). Not onboarded → see **onboard**.
+   even with no committed marker). If it returns a project with
+   `onboarded: false`, use that project explicitly for Kiem reads/writes
+   (`--project proj/<slug>` or the native tool's `project` argument). Do **not**
+   run **onboard** unless the user explicitly asks to add Kiem metadata
+   to the repo; reading or recording project state is not consent to commit
+   `.kiem` / `AGENTS.md`, especially in third-party open-source repositories.
 2. Read the state instead of re-deriving it:
    - `kiem todos` — the open task list (each line: `<note-id>  <index>  <text>`).
    - `kiem notes` — the project's notes (decisions, context, plans, learnings).

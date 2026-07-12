@@ -4,10 +4,10 @@ description: >-
   Onboard an existing repo into Kiem: create the committed `.kiem` marker, add
   the `AGENTS.md` pointer and home note, then offer to import pre-existing
   project-memory markdown (plans, brainstorms, solutions, decisions, reviews)
-  into Kiem notes. Use when `kiem project current` shows the repo isn't
-  onboarded, or the user says "onboard project", "onboard this repo", "add
-  project to kiem", "add this to
-  kiem", or asks directly to onboard/register a repo with Kiem.
+  into Kiem notes. Use only when the user explicitly says "onboard project",
+  "onboard this repo", "add project to kiem", "add this to kiem", or otherwise
+  directly asks to onboard/register the repo with Kiem. An `onboarded: false`
+  result alone is not permission to modify the repository.
 ---
 
 # Kiem onboard
@@ -15,6 +15,14 @@ description: >-
 Bring a repo under Kiem's shared memory: one committed marker, one home note,
 and (for genuinely new projects) an offer to fold pre-existing markdown notes
 into Kiem instead of leaving them scattered in the repo.
+
+## 0. Consent boundary
+
+Run this workflow only after an explicit user request to onboard this repository.
+A request to read or record Kiem state, or an `onboarded: false` result, is not
+consent to add `.kiem` / `AGENTS.md`. This matters especially in third-party
+open-source repositories. If the user wants local-only metadata, create it
+without committing and add both paths to `.git/info/exclude`.
 
 ## 1. No-op check
 

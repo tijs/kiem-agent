@@ -16,8 +16,10 @@ The plan is a Kiem **note**, not a repo file. It lives in Kiem tagged
 next agent reads it from Kiem — nothing is written to the project directory.
 
 ## 1. Read the state first (don't re-derive from code)
-- `kiem project current --json` — confirm the project (`proj/<slug>`); if
-  `onboarded` is `false`, the repo isn't onboarded — see **onboard**.
+- `kiem project current --json` — confirm the project (`proj/<slug>`). If it
+  returns `onboarded: false`, use the returned project explicitly
+  (`--project proj/<slug>` or the native tool's `project` argument). Do not
+  onboard the repo unless the user explicitly asks to add Kiem metadata.
 - `kiem notes --type plan` — existing plans (extend one rather than duplicate).
 - `kiem notes` — decisions, context, prior learnings.
 - `kiem todos` — what's already open.
