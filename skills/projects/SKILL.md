@@ -64,6 +64,21 @@ That is your ground truth for "what is this project and what's left."
 - Keep notes small and purposeful — one decision or task list per note — so the
   human can scan them in the app.
 
+## Bulk changes
+
+Use `kiem bulk` instead of shell loops when the same operation applies to several
+notes. Select exactly one scope with `--tag`, `--project`, repeated `--id`, or
+`--stdin`; supported actions are `tag add/remove`, `set-type`, `delete`, and
+`restore`.
+
+1. Preview first: `kiem bulk --tag old --dry-run tag remove old`.
+2. Apply the same command with `--yes` instead of `--dry-run`.
+3. Verify the selector afterward, e.g. `kiem list --tag old --json` should be
+   empty when removing that tag from every matching note.
+
+Bulk writes are atomic and version-checked. An explicit `tag remove` may leave a
+note untagged; generic whole-body edits keep their last-tag safeguard.
+
 ## Notes
 
 - The interface is the CLI; everything you write syncs to the user's other devices

@@ -1,6 +1,6 @@
 {
   "name": "kiem",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Kiem-native agent workflow — plan, work, review, and compound, keeping project state (notes, todos, plans, reviews, learnings) in Kiem via the kiem CLI.",
   "author": {
     "name": "Tijs Teulings"

@@ -55,6 +55,13 @@ Normal users stop at `kiem`. Maintainers can additionally install
 | **introspect** | Skill-run retro | `review` in `proj/kiem_agent` |
 | **release** | Safe package releases | `solution` in `proj/kiem_agent` |
 
+The repository exposes both `kiem` and `kiem-maintainer` from one GitHub repo.
+Claude Code and Codex install both through the repository marketplace; Copilot
+and Gemini install the skills directly with the commands below. Pi is the lone
+exception: it installs one package per git root and cannot reach the
+`plugins/kiem-maintainer` subpath remotely, so maintainers install that
+companion from a local checkout.
+
 ## Pi — the reference integration
 
 [Pi](https://pi.dev) gets the deepest integration: a native **extension** exposing
@@ -68,19 +75,20 @@ and public workflow skills only:
 ```bash
 pi install git:github.com/tijs/kiem-agent
 # pinned to a public release:
-pi install git:github.com/tijs/kiem-agent@v0.6.1
+pi install git:github.com/tijs/kiem-agent@v0.7.0
 ```
 
-Maintainers install the separate companion package as well:
+Maintainers install the companion package too. Because Pi installs one package
+per git root (no marketplace), it cannot target the `plugins/kiem-maintainer`
+subpath remotely — install it from a local checkout:
 
 ```bash
-# from a local checkout
-pi install /path/to/repo/plugins/kiem-maintainer
+pi install /path/to/kiem-agent/plugins/kiem-maintainer
 ```
 
-Pi installs from a git repository root, so the maintainer package cannot be
-installed from GitHub remotely without an npm mirror. Other agents (Claude,
-Codex, Copilot, Gemini) can install the subpath directly from the same repo.
+Claude and Codex install the companion through the repository marketplace;
+Copilot and Gemini install its skills directly from GitHub. See the per-agent
+commands below.
 
 The two package roots keep maintainer skills out of normal Pi installs.
 
