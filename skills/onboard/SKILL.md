@@ -107,6 +107,18 @@ YAML frontmatter is a quality check, not enough by itself.
 - Only runs on a genuinely new project (pre-first-note) — no dedup logic
   needed against notes that don't exist yet.
 
+## Live conversation
+
+For every Kiem note write, report one line as
+`Kiem: <status> | <type> | <title> | kiem://note/<id>`. Use `stored`, `updated`,
+`removed`, `not stored`, `unknown`, `declined`, or `skipped`; use `—` when no
+note exists. Use only tool-returned titles and IDs; render the id as a
+`kiem://note/<id>` reference so it is cmd+clickable in the terminal. Commands
+still accept either a bare id or a full reference. On read failure, report
+`unknown`, stop, and do not invent content. Report project binding, home/import
+notes, declined or skipped imports, and created todos briefly, one status per
+operation.
+
 ## Notes
 
 - **Under Pi:** `kiem_project_add`, `kiem_show`, `kiem_edit_lines`,

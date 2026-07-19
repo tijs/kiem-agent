@@ -31,10 +31,23 @@ One note, covering:
 - **Fix** — what resolved it.
 - **How to avoid / detect next time** — the reusable lesson.
 
-Write the note to a file, then `kiem note add --type solution --file solution.md` —
-`--file` keeps a body with backticks or `$(...)` intact (inlining raw markdown as a
-quoted argument lets the shell interpolate it). The first line is the title; keep
+Write the note to a file, then
+`kiem note add --type solution --file solution.md` — `--file` keeps a body with
+backticks or `$(...)` intact (inlining raw markdown as a quoted argument lets
+the shell interpolate it). The first line is the title; keep
 it scannable in the app.
+
+## Live conversation
+
+For every Kiem note write, report one line as
+`Kiem: <status> | <type> | <title> | kiem://note/<id>`. Use `stored`, `updated`,
+`removed`, `not stored`, `unknown`, `declined`, or `skipped`; use `—` when no
+note exists. Use only tool-returned titles and IDs; render the id as a
+`kiem://note/<id>` reference so it is cmd+clickable in the terminal. Commands
+still accept either a bare id or a full reference. On read failure, report
+`unknown`, stop, and do not invent note content. After saving or declining,
+briefly summarize the problem, root cause, fix, reusable lesson, and follow-up
+todos.
 
 ## Notes
 

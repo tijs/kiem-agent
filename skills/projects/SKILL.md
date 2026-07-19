@@ -43,13 +43,15 @@ That is your ground truth for "what is this project and what's left."
 
 ## While working
 
-- Complete a task: `kiem todo check <note-id> <index>` (undo with `uncheck`).
-  Indices are **1-based** — 1 is the first checkbox, `kiem todo check <note-id> 3`
-  checks the third, and **0 is rejected** with an error. Indices are positional
-  among the note's checkbox lines (checked ones included), so checking one item
-  never renumbers the others. Addresses come straight from `kiem todos`. **Re-run
-  `kiem todos` immediately before acting** if the note may have changed (another
-  device or the app may have edited it; a stale index can toggle the wrong item).
+- Complete one or more tasks: `kiem todo check <note-id> <index>...` (undo with
+  `uncheck`). Indices are **1-based** — 1 is the first checkbox, `kiem todo check
+  <note-id> 3` checks the third, and **0 is rejected** with an error. Addresses
+  come straight from `kiem todos`. Indices are stable checkbox positions within a
+  note, including checked items; they do not renumber when an earlier item is
+  checked. **Re-run `kiem todos` immediately before and after a batch** if the note
+  may have changed (another device or the app may have edited it), and confirm
+  every intended item is gone; never trust a shell loop's exit status. A stale
+  index can toggle the wrong item.
 - Add a single task to an existing note: `kiem todo add <note-id> "<text>"`. It
   appends one `- [ ]` item in one step — **do not** read the note and rewrite its
   whole body to add a todo (that is slow and corrupts formatting).
@@ -81,6 +83,18 @@ notes. Select exactly one scope with `--tag`, `--project`, repeated `--id`, or
 
 Bulk writes are atomic and version-checked. An explicit `tag remove` may leave a
 note untagged; generic whole-body edits keep their last-tag safeguard.
+
+## Live conversation
+
+For every Kiem note write, report one line as
+`Kiem: <status> | <type> | <title> | kiem://note/<id>`. Use `stored`, `updated`,
+`removed`, `not stored`, `unknown`, `declined`, or `skipped`; use `—` when no
+note exists. Use only tool-returned titles and IDs; render the id as a
+`kiem://note/<id>` reference so it is cmd+clickable in the terminal. Commands
+still accept either a bare id or a full reference. On read failure, report
+`unknown`, stop, and do not invent content. This applies to `plan`, `review`,
+`brainstorm`, `solution`, `decision`, and `doc` notes; summarize key content,
+status, and open todos after the operation.
 
 ## Notes
 

@@ -57,6 +57,17 @@ Don't add lenses beyond these; don't run a lens whose area the diff doesn't touc
   list.
 - Keep advisory/nits in the review note prose; only real fixes become todos.
 
+## Live conversation
+
+For every Kiem note write, report one line as
+`Kiem: <status> | <type> | <title> | kiem://note/<id>`. Use `stored`, `updated`,
+`removed`, `not stored`, `unknown`, `declined`, or `skipped`; use `—` when no
+note exists. Use only tool-returned titles and IDs; render the id as a
+`kiem://note/<id>` reference so it is cmd+clickable in the terminal. Commands
+still accept either a bare id or a full reference. On read failure, report
+`unknown`, stop, and do not invent content. After saving or declining, briefly
+summarize scope, findings by severity, validation, and actionable todos.
+
 ## Notes
 
 - **Under Pi:** use `kiem_note_add` (with `type: "review"`) and `kiem_todo_add`;

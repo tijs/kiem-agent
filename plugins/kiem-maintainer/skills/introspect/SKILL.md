@@ -73,6 +73,17 @@ Introspection: <run / topic / date>
 - [ ] <smallest preventative change, naming the skill/file if known>
 ```
 
+## Live conversation
+
+For every Kiem note write, report one line as
+`Kiem: <status> | <type> | <title> | kiem://note/<id>`. Use `stored`, `updated`,
+`removed`, `not stored`, `unknown`, `declined`, or `skipped`; use `—` when no
+note exists. Use only tool-returned titles and IDs; render the id as a
+`kiem://note/<id>` reference so it is cmd+clickable in the terminal. Commands
+still accept either a bare id or a full reference. On read failure, report
+`unknown`, stop, and do not invent content. After recording or declining,
+briefly summarize evidence, findings, confidence, and improvement todos.
+
 ## Notes
 
 - **Under Pi:** use `kiem_notes(project: "proj/kiem_agent")`,

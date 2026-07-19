@@ -10,8 +10,9 @@ description: >-
 
 # Kiem work
 
-Execute a plan whose state lives in Kiem, and keep that state current as you go so
-the next agent (or the human on another device) picks up exactly where you left off.
+Execute a plan whose state lives in Kiem, and keep that state current as you go
+so the next agent (or the human on another device) picks up exactly where you left
+off.
 
 ## 1. Find and read the plan
 
@@ -32,9 +33,12 @@ No parallel fan-out here.
 
 ## 3. Record progress in Kiem (the point)
 
-- **Complete a task:** re-run `kiem todos` immediately before acting (indices are
-  positional and may have shifted), then `kiem todo check <note-id> <index>`.
-  Indices are 1-based: 1 is the first checkbox, and 0 is rejected.
+- **Complete one or more tasks:** re-run `kiem todos` immediately before acting
+  (indices are stable checkbox positions within a note, including checked items,
+  and do not renumber when an earlier item is checked), then `kiem todo check
+  <note-id> <index>...`. Indices are 1-based: 1 is the first checkbox, and 0 is
+  rejected. After checking a batch, run `kiem todos` again and confirm every
+  intended item is gone — never trust a shell loop's exit status.
 - **Record a decision or finding:** `kiem note add --type decision "<text>"`.
 - **New work you discover:** `kiem todo add <note-id> "<text>"`.
 - **Amend the plan surgically:** from `kiem show` derive the 1-based line
@@ -53,12 +57,23 @@ Report changed paths, validation results, remaining work, and git state: commit
 (hash or uncommitted), push (pushed or local-only), and release (version or not
 released). Do not commit, push, or release unless the user asked.
 
+## Live conversation
+
+For every Kiem note write or todo mutation, report one line as
+`Kiem: <status> | <type> | <title> | kiem://note/<id>`. Use `stored`, `updated`,
+`removed`, `not stored`, `unknown`, `declined`, or `skipped`; use `—` when no
+note exists. Use only tool-returned titles and IDs; render the id as a
+`kiem://note/<id>` reference so it is cmd+clickable in the terminal. Commands
+still accept either a bare id or a full reference. On read failure, report
+`unknown`, stop, and do not invent plan content. Summarize completed work,
+status, decisions/findings, validation, and remaining unchecked units.
+
 ## Notes
 
 - **Under Pi:** prefer native tools — `kiem_notes`, `kiem_show`, `kiem_todos`,
   `kiem_todo_set`, `kiem_todo_add`, `kiem_note_add` (with a `type`),
   `kiem_edit_lines` (pass `expect_version` to avoid clobbering concurrent
   edits).
-- Everything you write to Kiem syncs to the user's other devices within moments —
-  treat notes as user-visible; keep them small and purposeful.
+- Everything you write to Kiem syncs to the user's other devices within
+  moments — treat notes as user-visible; keep them small and purposeful.
 - Reviewing the result is **review**, not this skill.

@@ -89,5 +89,17 @@ Require all of these to resolve to the same commit/version:
 - package and host-manifest versions
 
 Record one concise `solution` note in `proj/kiem_agent` with version, commit, and
-release URL. Report commit, push, tag, and GitHub release status explicitly;
-mention npm only if npm distribution was requested.
+release URL.
+
+## Live conversation
+
+For every Kiem note write, report one line as
+`Kiem: <status> | <type> | <title> | kiem://note/<id>`. Use `stored`, `updated`,
+`removed`, `not stored`, `unknown`, `declined`, or `skipped`; use `—` when no
+note exists. Use only tool-returned titles and IDs; render the id as a
+`kiem://note/<id>` reference so it is cmd+clickable in the terminal. Commands
+still accept either a bare id or a full reference. On read failure, report
+`unknown`, stop, and do not invent release-note content. If preflight or publish
+fails before the solution note exists, report `skipped` for that note plus the
+failed stage; use `unknown` if persistence is uncertain. Summarize version,
+commit, tag, URL, and verification status.
