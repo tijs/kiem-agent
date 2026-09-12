@@ -127,7 +127,7 @@ export default function kiemExtension(pi: ExtensionAPI) {
 		name: "kiem_todos",
 		label: "Kiem: open todos",
 		description:
-			"List the current Kiem project's open todos as JSON: [{note_id, index, text}]. The (note_id, index) pairs are the addresses you pass to kiem_todo_set.",
+			"List the current Kiem project's open todos as JSON: [{note_id, index, text}]. Index is 1-based (1 = first checkbox; 0 is rejected). The (note_id, index) pairs are the addresses you pass to kiem_todo_set.",
 		promptSnippet:
 			"Read the project's open task list from Kiem instead of inferring tasks from the code.",
 		parameters: Type.Object({ project: projectParam }),
@@ -277,14 +277,14 @@ export default function kiemExtension(pi: ExtensionAPI) {
 		name: "kiem_todo_set",
 		label: "Kiem: check/uncheck todo",
 		description:
-			"Check or uncheck a todo by its (note_id, index) address from kiem_todos. Indices are positional within a note.",
+			"Check or uncheck a todo by its (note_id, index) address from kiem_todos. Indices are 1-based (1 = first checkbox, so index 3 is the third; 0 is rejected) and positional among the note's checkbox lines, checked ones included.",
 		promptGuidelines: [
 			"Always call kiem_todos immediately before this — the note may have changed on another device and a stale index can toggle the wrong item.",
 		],
 		parameters: Type.Object({
 			note_id: Type.String({ description: "The todo's note id" }),
 			index: Type.Integer({
-				description: "The todo's positional index within the note",
+				description: "The todo's 1-based positional index within the note (1 = first checkbox; 0 is rejected)",
 			}),
 			checked: Type.Boolean({
 				description: "true to check (done), false to uncheck",

@@ -34,6 +34,7 @@ No parallel fan-out here.
 
 - **Complete a task:** re-run `kiem todos` immediately before acting (indices are
   positional and may have shifted), then `kiem todo check <note-id> <index>`.
+  Indices are 1-based: 1 is the first checkbox, and 0 is rejected.
 - **Record a decision or finding:** `kiem note add --type decision "<text>"`.
 - **New work you discover:** `kiem todo add <note-id> "<text>"`.
 - **Amend the plan surgically:** from `kiem show` derive the 1-based line

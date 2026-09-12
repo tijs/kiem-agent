@@ -32,7 +32,8 @@ automatically. You rarely type the tag — just run `kiem` from inside the repo.
    to the repo; reading or recording project state is not consent to commit
    `.kiem` / `AGENTS.md`, especially in third-party open-source repositories.
 2. Read the state instead of re-deriving it:
-   - `kiem todos` — the open task list (each line: `<note-id>  <index>  <text>`).
+   - `kiem todos` — the open task list (each line: `<note-id>  <index>  <text>`;
+     `index` is 1-based — 1 = first checkbox).
    - `kiem notes` — the project's notes (decisions, context, plans, learnings).
    - `kiem show <note-id>` — the full body of any note.
 
@@ -43,10 +44,12 @@ That is your ground truth for "what is this project and what's left."
 ## While working
 
 - Complete a task: `kiem todo check <note-id> <index>` (undo with `uncheck`).
-  Addresses come straight from `kiem todos`. Indices are positional within a note,
-  so **re-run `kiem todos` immediately before acting** if the note may have changed
-  (another device or the app may have edited it; a stale index can toggle the wrong
-  item).
+  Indices are **1-based** — 1 is the first checkbox, `kiem todo check <note-id> 3`
+  checks the third, and **0 is rejected** with an error. Indices are positional
+  among the note's checkbox lines (checked ones included), so checking one item
+  never renumbers the others. Addresses come straight from `kiem todos`. **Re-run
+  `kiem todos` immediately before acting** if the note may have changed (another
+  device or the app may have edited it; a stale index can toggle the wrong item).
 - Add a single task to an existing note: `kiem todo add <note-id> "<text>"`. It
   appends one `- [ ]` item in one step — **do not** read the note and rewrite its
   whole body to add a todo (that is slow and corrupts formatting).

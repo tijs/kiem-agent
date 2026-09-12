@@ -42,12 +42,12 @@ Verify with `pi list` (packages) and `/skill:plan` (etc.) inside a session.
 | Tool | What it does |
 | --- | --- |
 | `kiem_project_current` | Resolve the project for the cwd (`proj/<slug>`) |
-| `kiem_todos` | List open todos `[{note_id, index, text}]` |
+| `kiem_todos` | List open todos `[{note_id, index, text}]` — index is 1-based (1 = first checkbox) |
 | `kiem_notes` | List the project's notes |
 | `kiem_show` | Show one note (metadata + body) |
 | `kiem_note_add` | Add a note; checkbox lines become todos |
 | `kiem_todo_add` | Append one todo without rewriting the note |
-| `kiem_todo_set` | Check / uncheck a todo by `(note_id, index)` |
+| `kiem_todo_set` | Check / uncheck a todo by `(note_id, index)` — 1-based, 1 = first checkbox, 0 rejected |
 | `kiem_edit_lines` | Replace a guarded line range |
 | `kiem_project_add` | Onboard the cwd as a project (writes `.kiem`) |
 
