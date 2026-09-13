@@ -75,7 +75,7 @@ and public workflow skills only:
 ```bash
 pi install git:github.com/tijs/kiem-agent
 # pinned to a public release:
-pi install git:github.com/tijs/kiem-agent@v0.7.0
+pi install git:github.com/tijs/kiem-agent@v0.7.1
 ```
 
 Maintainers install the companion package too. Because Pi installs one package
