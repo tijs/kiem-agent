@@ -37,8 +37,40 @@ its area. Each lens is one focused reviewer; run at most 4 at once.
   - **swift / swiftui** — `apple/**` or `pulp/**` changed: `@MainActor`/`@Observable`
     correctness, concurrency, memory, view state.
   - **security** — FFI boundary, P2P/sync, or input parsing touched.
+  - **state ownership and interrupted transitions** — async work, retries,
+    persistent statuses, timers, optimistic saves, or deployment activation
+    changed: apply the checks below to the affected flows across modules.
 
 Don't add lenses beyond these; don't run a lens whose area the diff doesn't touch.
+
+### State ownership and interrupted transitions
+
+Fit this check within the existing reviewer budget: the correctness reviewer
+can cover it, with the tests reviewer checking the relevant regression coverage.
+Scope it to changed flows and their callers/writers; a whole-project state-machine
+inventory is only needed when requested or justified by a broader failure.
+
+Trace **identity → ownership → side effect → guarded completion**. Identify the
+entity/source revision, who may change it, allowed states (including unknown and
+failure), and the boundary between an external write and local completion. A
+small transition table is enough when the lifecycle is hard to follow.
+
+Suspend work at an async boundary, then change/delete the entity, cancel, retry,
+or restart. Check whether old work can still write or settle replacement work,
+whether events or callers' obligations disappear while work is active, and
+whether unknown/failure is mistaken for confirmed success. For persistent work,
+check cross-process ownership and crash/replay recovery as well as local flags.
+
+Report a concrete reachable failure sequence and its consequence; distinguish
+reproductions from code-path evidence and unverified risks. For demonstrated
+defects, request a deterministic interleaving regression (deferred I/O/fake clocks,
+isolated database, or activation fault injection as appropriate). Test invariants
+such as one owner, idempotent completion, and stale work leaving new state intact.
+
+Prefer a targeted dirty bit, action/version token, shared promise, atomic claim,
+or explicit unknown outcome when sufficient. Assess whether the benefit justifies
+the change; ordinary UI booleans and already-sound machines need no rewrite or
+state-machine framework.
 
 ## 3. Record findings in Kiem
 
